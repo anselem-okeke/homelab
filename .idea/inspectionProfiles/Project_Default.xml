@@ -1,0 +1,82 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="GrazieInspection" enabled="false" level="TYPO" enabled_by_default="false" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="9">
+            <item index="0" class="java.lang.String" itemvalue="minutes" />
+            <item index="1" class="java.lang.String" itemvalue="%}selected{%" />
+            <item index="2" class="java.lang.String" itemvalue="1440" />
+            <item index="3" class="java.lang.String" itemvalue="360" />
+            <item index="4" class="java.lang.String" itemvalue="60" />
+            <item index="5" class="java.lang.String" itemvalue="15" />
+            <item index="6" class="java.lang.String" itemvalue="endif" />
+            <item index="7" class="java.lang.String" itemvalue="%}" />
+            <item index="8" class="java.lang.String" itemvalue="{%" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="LanguageDetectionInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyCompatibilityInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ourVersions">
+        <value>
+          <list size="2">
+            <item index="0" class="java.lang.String" itemvalue="3.9" />
+            <item index="1" class="java.lang.String" itemvalue="3.10" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="19">
+            <item index="0" class="java.lang.String" itemvalue="qalembic" />
+            <item index="1" class="java.lang.String" itemvalue="qqalembic" />
+            <item index="2" class="java.lang.String" itemvalue="dnspython" />
+            <item index="3" class="java.lang.String" itemvalue="pymongo" />
+            <item index="4" class="java.lang.String" itemvalue="pytest" />
+            <item index="5" class="java.lang.String" itemvalue="iniconfig" />
+            <item index="6" class="java.lang.String" itemvalue="pluggy" />
+            <item index="7" class="java.lang.String" itemvalue="cffi" />
+            <item index="8" class="java.lang.String" itemvalue="cryptography" />
+            <item index="9" class="java.lang.String" itemvalue="numpy" />
+            <item index="10" class="java.lang.String" itemvalue="pycparser" />
+            <item index="11" class="java.lang.String" itemvalue="attrs" />
+            <item index="12" class="java.lang.String" itemvalue="exceptiongroup" />
+            <item index="13" class="java.lang.String" itemvalue="filelock" />
+            <item index="14" class="java.lang.String" itemvalue="charset-normalizer" />
+            <item index="15" class="java.lang.String" itemvalue="tomli" />
+            <item index="16" class="java.lang.String" itemvalue="urllib3" />
+            <item index="17" class="java.lang.String" itemvalue="idna" />
+            <item index="18" class="java.lang.String" itemvalue="uvicorn" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPep8NamingInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N802" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="dict.get" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
+      <option name="processCode" value="true" />
+      <option name="processLiterals" value="true" />
+      <option name="processComments" value="true" />
+    </inspection_tool>
+  </profile>
+</component>
