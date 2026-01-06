@@ -73,10 +73,10 @@ sudo chown jumpbox:jumpbox /usr/local/bin/talosctl
 - You can open VM consoles from the Proxmox UI.
 
 ### 1.3 Talos boot media
-- We used a Talos **Cloud Server** **NoCloud ISO** for boot.
+- I used a Talos **Cloud Server** **NoCloud ISO** for boot.
 
 
-> Note: Booting Talos ISO does not “install” Talos automatically. Talos installs to disk after we apply a machine configuration with `talosctl apply-config`.
+> Note: Booting Talos ISO does not “install” Talos automatically. Talos installs to disk after I apply a machine configuration with `talosctl apply-config`.
 
 ### 1.4 Installer image (Image Factory)
 I used a custom Image Factory installer image (includes `qemu-guest-agent` extension):
@@ -480,7 +480,7 @@ talosctl machineconfig patch worker.yaml --patch @worker-base.yaml --output work
 talosctl get links --insecure --nodes <WORKER_DHCP_IP>
 ```
 - Use the interface which is OPER up.
-- In this runbook we assume: eth0.
+- In this runbook I assume: eth0.
 
 #### 4.2 Worker 1 static patch (completed example)
 
