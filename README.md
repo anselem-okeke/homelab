@@ -1,6 +1,6 @@
 ## Homelab Checklist 
 <p align="center">
-  <img src="img/ryzen-1.jpg" width="400" height="300" />
+  <img src="img/ryzen-1.jpg" width="400" height="400" />
   <img src="img/ryzen-2.jpg" width="400" height="600" />
 </p>
 
