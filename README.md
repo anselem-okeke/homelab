@@ -1,5 +1,8 @@
 ## Homelab Checklist 
-![ryzen](img/ryzen-1.jpg)![ryzen](img/ryzen-2.jpg)
+<p align="center">
+  <img src="img/ryzen-1.jpg" width="45%" />
+  <img src="img/ryzen-2.jpg" width="45%" />
+</p>
 
 ### Target hardware: 
 - Ryzen 7 3700X (8c/16t)
