@@ -7,3 +7,10 @@
 **/worker*.yaml
 manifest/controlplane-cp*.yaml
 manifest/talos-prod/*.yaml
+
+# --- NEVER COMMIT: Talos/Kubernetes secrets/configs ---
+**/talosconfig
+**/*kubeconfig*
+**/secrets.yaml
+manifest/controlplane-cp*.yaml
+manifest/talos-prod/*.yaml
