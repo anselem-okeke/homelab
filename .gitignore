@@ -1,0 +1,9 @@
+
+# --- NEVER COMMIT: Talos/Kubernetes generated secrets/configs ---
+**/secrets.yaml
+**/talosconfig
+**/*kubeconfig*
+**/controlplane*.yaml
+**/worker*.yaml
+manifest/controlplane-cp*.yaml
+manifest/talos-prod/*.yaml
