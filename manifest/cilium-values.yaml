@@ -1,0 +1,90 @@
+# cilium-values.yaml
+# Talos + Flannel -> Cilium migration (safe path)
+# - keep kube-proxy for now
+# - tunnel (vxlan) for simplicity
+# - Talos-required: disable cgroup automount + drop SYS_MODULE capability
+
+kubeProxyReplacement: "true"
+
+k8sServiceHost: "192.168.0.210"
+k8sServicePort: 6443
+
+ipam:
+  mode: "kubernetes"
+
+routingMode: "tunnel"
+tunnelProtocol: "vxlan"
+
+# Pod + Service CIDRs for your cluster (informational / can help clarity)
+# Pod CIDR:     10.244.0.0/16
+# Service CIDR: 10.96.0.0/12
+
+# Enterprise-grade visibility
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+
+# --- Talos-specific requirements ---
+cgroup:
+  autoMount:
+    enabled: false
+  hostRoot: /sys/fs/cgroup
+
+# Talos blocks loading kernel modules from pods, so ensure SYS_MODULE is not requested.
+securityContext:
+  capabilities:
+    ciliumAgent:
+      - CHOWN
+      - KILL
+      - NET_ADMIN
+      - NET_RAW
+      - IPC_LOCK
+      - SYS_ADMIN
+      - SYS_RESOURCE
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    cleanCiliumState:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - SYS_RESOURCE
+
+# --- Metrics (Prometheus) ---
+
+# Cilium agent metrics (useful for Grafana dashboards)
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true   # set to false if you DON'T have ServiceMonitor CRD
+
+# Cilium operator metrics
+operator:
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true # set to false if you DON'T have ServiceMonitor CRD
+
+# Hubble metrics (this is what cilium status shows as "Metrics: Disabled")
+hubble:
+  metrics:
+    # If empty or null -> disabled. This is the important part.
+    enabled:
+      - dns:query;ignoreAAAA
+      - drop
+      - tcp
+      - flow
+    serviceMonitor:
+      enabled: true # set to false if you DON'T have ServiceMonitor CRD
+
+  # Hubble Relay metrics (optional, but nice to have)
+  relay:
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true # set to false if you DON'T have ServiceMonitor CRD
+
+

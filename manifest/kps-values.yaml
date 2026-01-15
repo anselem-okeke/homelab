@@ -1,0 +1,10 @@
+prometheus:
+  prometheusSpec:
+    # Watch ServiceMonitors/PodMonitors in ALL namespaces
+    serviceMonitorNamespaceSelector: {}
+    podMonitorNamespaceSelector: {}
+
+    # Select ALL ServiceMonitors/PodMonitors (no label restriction)
+    serviceMonitorSelector: {}
+    podMonitorSelector: {}
+

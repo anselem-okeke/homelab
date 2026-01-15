@@ -14,3 +14,4 @@ manifest/talos-prod/*.yaml
 **/secrets.yaml
 manifest/controlplane-cp*.yaml
 manifest/talos-prod/*.yaml
+*mp4
