@@ -1,0 +1,5 @@
+resources:
+  - namespace.yaml
+  - demo-app.yaml
+
+namespace: policy-stage

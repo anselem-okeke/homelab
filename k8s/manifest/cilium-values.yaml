@@ -22,10 +22,25 @@ tunnelProtocol: "vxlan"
 # Enterprise-grade visibility
 hubble:
   enabled: true
+
   relay:
     enabled: true
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
   ui:
     enabled: true
+
+  metrics:
+    enabled:
+      - dns:query;ignoreAAAA
+      - drop
+      - tcp
+      - flow
+    serviceMonitor:
+      enabled: true
 
 # --- Talos-specific requirements ---
 cgroup:
@@ -65,18 +80,6 @@ prometheus:
 operator:
   prometheus:
     enabled: true
-    serviceMonitor:
-      enabled: true # set to false if you DON'T have ServiceMonitor CRD
-
-# Hubble metrics (this is what cilium status shows as "Metrics: Disabled")
-hubble:
-  metrics:
-    # If empty or null -> disabled. This is the important part.
-    enabled:
-      - dns:query;ignoreAAAA
-      - drop
-      - tcp
-      - flow
     serviceMonitor:
       enabled: true # set to false if you DON'T have ServiceMonitor CRD
 

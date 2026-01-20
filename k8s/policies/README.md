@@ -211,3 +211,5 @@ kubectl -n <ns> delete netpol default-deny
   - Tests prove expected behavior 
   - Dashboards show stable drops (near-zero, explainable)
   - Rollback steps documented
+
+[Reference - Cilium Network Policy](https://docs.cilium.io/en/stable/security/policy/index.html)

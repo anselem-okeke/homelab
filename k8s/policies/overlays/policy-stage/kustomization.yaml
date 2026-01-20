@@ -1,0 +1,7 @@
+resources:
+  - /mnt/data/homelab/k8s/policies/apps/policy-lab
+  - /mnt/data/homelab/k8s/policies/baselines/default-deny.yaml
+  - /mnt/data/homelab/k8s/policies/baselines/allow-dns-egress.yaml
+  - allow-client-to-server.yaml
+
+namespace: policy-stage
