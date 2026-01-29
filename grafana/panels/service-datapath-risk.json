@@ -1,0 +1,71 @@
+{
+  "id": 9,
+  "type": "gauge",
+  "title": "SERVICE DATAPATH RISK",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "h": 13,
+    "w": 6
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "orange",
+            "value": 15
+          },
+          {
+            "color": "dark-red",
+            "value": 40
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      },
+      "max": 100,
+      "min": 0,
+      "unit": "percentunit"
+    },
+    "overrides": []
+  },
+  "pluginVersion": "12.3.1",
+  "targets": [
+    {
+      "editorMode": "code",
+      "exemplar": false,
+      "expr": "100 * max(\r\n  clamp_max(\r\n    max by (node, map_name) (cilium_bpf_map_pressure{map_name=~\".*services.*\"}),\r\n    1\r\n  )\r\nor\r\n  clamp_max(\r\n    sum(rate(hubble_drop_total{job=\"hubble-metrics\"}[5m])) / 50,\r\n    1\r\n  )\r\n)\r\n",
+      "instant": true,
+      "legendFormat": "__auto",
+      "range": false,
+      "refId": "A"
+    }
+  ],
+  "datasource": {
+    "type": "prometheus",
+    "uid": "prometheus"
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "auto",
+    "showThresholdLabels": false,
+    "showThresholdMarkers": true,
+    "sizing": "auto",
+    "minVizWidth": 75,
+    "minVizHeight": 75
+  }
+}

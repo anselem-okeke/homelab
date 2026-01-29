@@ -111,7 +111,7 @@ Standard options
 ```shell
 cilium_bpf_map_pressure{map_name=~".*policy.*"}
 ```
-- But discovery showed your exported `map_name` values do not include `policy/lpm`.
+- But discovery showed exported `map_name` values do not include `policy/lpm`.
 
 - Discovery query (Explore)
 
