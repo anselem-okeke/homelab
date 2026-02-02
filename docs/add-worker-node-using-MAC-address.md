@@ -8,7 +8,7 @@ Worker W2 must use a stable static IP `192.168.0.245/24` in Talos on Proxmox, wi
 #### Root cause
 1) **Talos NIC name mismatch** (VM interface names may not match your expected `eth0/ens18`).  
 2) **Patch merge behavior** (`talosctl machineconfig patch` merges lists; it doesn’t delete old `interfaces` entries).  
-✅ Final solution: bind the NIC by **MAC** using `deviceSelector.hardwareAddr`, and generate a final file where **no `interface:`** keys remain.
+- Final solution: bind the NIC by **MAC** using `deviceSelector.hardwareAddr`, and generate a final file where **no `interface:`** keys remain.
 
 ---
 
