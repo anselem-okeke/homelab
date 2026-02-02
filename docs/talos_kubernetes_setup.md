@@ -638,5 +638,6 @@ ping -c 2 192.168.0.245
 kubectl get nodes -o wide
 ```
 - Remove ISO + set boot order to disk in Proxmox UI.
+### [Add Talos worker Using MacAddress](https://github.com/anselem-okeke/homelab/blob/main/docs/add-worker-node-using-MAC-address.md)
 
-[Reference - Talos official Documentation](https://siderolabs-fe86397c.mintlify.app/talos/v1.12/overview/what-is-talos)
+### [Reference - Talos official Documentation](https://siderolabs-fe86397c.mintlify.app/talos/v1.12/overview/what-is-talos)

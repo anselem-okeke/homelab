@@ -259,3 +259,5 @@ nc -vz 192.168.0.245 50000
   - In Talos-on-VMs, MAC pinning is the most reliable for static IPs. 
   - `talosctl machineconfig patch` merges arrays; it won’t remove old interface entries. 
   - When you need a clean network config, rewrite `machine.network.interfaces` explicitly.
+
+### [Trouble Shooting Section]()
