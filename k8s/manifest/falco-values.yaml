@@ -1,0 +1,139 @@
+# Falco baseline for Talos + Kubernetes (enterprise-style, low-noise starter)
+# - eBPF driver (Talos-friendly)
+# - Falcosidekick enabled (routing)
+# - Webhook receiver (in-cluster) enabled NOW
+# - Loki output stub present (enable later when Loki exists)
+
+tty: true
+
+driver:
+  kind: modern_ebpf
+
+# Keep Falco logs structured (nice for later Loki)
+jsonOutput: true
+jsonIncludeOutputProperty: true
+
+# Minimal resources so it stays stable under load
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: "1"
+    memory: 512Mi
+
+# Falcosidekick routing layer
+falcosidekick:
+  enabled: true
+
+  extraEnvVarsSecret: slack-auth
+
+  tolerations:
+    - operator: Exists
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+  # Sidekick config
+  config:
+    # Webhook receiver inside the cluster (for immediate proof/testing)
+    webhook:
+      address: "http://webhook-echo.falco.svc.cluster.local/"
+      minimumpriority: "warning"
+
+    slack:
+      minimumpriority: "critical"
+
+    alertmanager:
+      hostport: "http://kps-kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093"
+      minimumpriority: "critical"
+
+    # Prometheus metrics endpoint for sidekick (useful for dashboards)
+    # (Sidekick exposes /metrics; kube-prometheus-stack can scrape it if ServiceMonitor is enabled)
+    prometheus:
+      enabled: true
+
+    loki:
+      hostport: "http://loki-gateway.logging.svc.cluster.local:3100"
+      minimumpriority: "warning"
+      # optional: extra labels to help search in Grafana Explore
+      # extralabels: "cluster=homelab,source=falco"
+
+# --- Low-noise starter: narrow exceptions ---
+# do NOT silence Falco globally.
+# only add a couple of safe exceptions for known tooling patterns.
+customRules:
+  custom-rules.yaml: |-
+    - macro: user_known_tooling_namespaces
+      condition: (k8s.ns.name in (falco, monitoring))
+
+    # Example: allow known monitoring agents to read /proc a lot (common noise)
+    - rule: Ignore noisy /proc access in monitoring
+      desc: Reduce noise from monitoring namespace agents
+      condition: >
+        (k8s.ns.name=monitoring and proc.name in (node_exporter, prometheus, telegraf))
+      output: "Ignoring known monitoring /proc activity (ns=%k8s.ns.name pod=%k8s.pod.name proc=%proc.name)"
+      priority: NOTICE
+      tags: [k8s, noise_reduction]
+      enabled: true
+
+    # Example: if you run "debug pods" in policy-lab, don't blanket-ignore; keep it surgical:
+    # Allow *your* known client pod to run curl (adjust pod name if you change it)
+    - rule: Allow curl in policy-lab client
+      desc: Allow curl inside the specific policy-lab/client pod used for tests
+      condition: >
+        (k8s.ns.name=policy-lab and k8s.pod.name=client and proc.name=curl)
+      output: "Allowed curl in policy-lab client (pod=%k8s.pod.name cmd=%proc.cmdline)"
+      priority: NOTICE
+      tags: [k8s, noise_reduction]
+      enabled: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
