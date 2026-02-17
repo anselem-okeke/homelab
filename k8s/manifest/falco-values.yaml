@@ -51,6 +51,7 @@ falcosidekick:
 
     alertmanager:
       hostport: "http://kps-kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093"
+      endpoint: "/api/v2/alerts"
       minimumpriority: "critical"
 
     # Prometheus metrics endpoint for sidekick (useful for dashboards)
