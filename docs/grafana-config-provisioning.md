@@ -55,7 +55,7 @@ jq -r '.meta.slug, .meta.folderTitle, .meta.url' /mnt/data/homelab/grafana/panel
 
 ---
 
-## 1) Create the provisioning YAML (no copy/paste)
+## 1) Create the provisioning YAML
 
 Create a folder for K8s manifests:
 ```bash
