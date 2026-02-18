@@ -60,7 +60,7 @@ falcosidekick:
       enabled: true
 
     loki:
-      hostport: "http://loki-gateway.logging.svc.cluster.local:3100"
+      hostport: "http://loki-gateway.logging.svc.cluster.local"
       minimumpriority: "warning"
       # optional: extra labels to help search in Grafana Explore
       # extralabels: "cluster=homelab,source=falco"
