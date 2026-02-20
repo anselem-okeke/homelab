@@ -1,4 +1,5 @@
 ## Kubernetes Audit Security Dashboard (Enterprise)
+![img](../img/audi-soc.gif)
 This guide shows how to **collect Kubernetes API Server audit logs** with **Grafana Alloy (DaemonSet)** and build an **enterprise-style security dashboard** in Grafana backed by **Loki**.
 
 If anyone clones my repo and follows this document, you should be able to:
@@ -600,12 +601,8 @@ If legend shows `{}`:
 
 - The following references are added for quick setup:
   - [Part of this docs involves loki setup](https://github.com/anselem-okeke/homelab/blob/main/docs/falco-security.md)
-  - 
+  - [Grafana provisioning the infrastructure way](https://github.com/anselem-okeke/homelab/blob/main/docs/grafana-config-provisioning.md)
+  - [Grafana audit SOC dashboard.json import only]()
+  - [Grafana audit SOC dashboard.json infrastructure provisioning]()
+  - [Step for simulating grafan audit SOC]()
 
-values-alloy-audit.yaml
-
-dashboard.json export
-
-this README.md
-
-(optional) screenshots of the final dashboard
