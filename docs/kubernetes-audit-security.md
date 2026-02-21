@@ -601,8 +601,9 @@ If legend shows `{}`:
 
 - The following references are added for quick setup:
   - [Part of this docs involves loki setup](https://github.com/anselem-okeke/homelab/blob/main/docs/falco-security.md)
-  - [Grafana provisioning the infrastructure way](https://github.com/anselem-okeke/homelab/blob/main/docs/grafana-config-provisioning.md)
-  - [Grafana audit SOC dashboard.json import only]()
-  - [Grafana audit SOC dashboard.json infrastructure provisioning](https://github.com/anselem-okeke/homelab/blob/main/grafana/panels/audit-soc-dashboard.provision.json)
-  - [Step for simulating grafan audit SOC]()
+  - [Grafana Dashboard.json GitOps provisioning, IaC](https://github.com/anselem-okeke/homelab/blob/main/grafana/panels/talos-cilium-dashboard.provision.json)
+  - [Grafana Dsahboard.json GitOps provisioning, IaC](https://github.com/anselem-okeke/homelab/blob/main/grafana/panels/audit-soc-dashboard.provision.json)
+  - [Grafana Dashboard.json import only](https://github.com/anselem-okeke/homelab/blob/main/grafana/panels/talos-cilium-dashboard.import-newcopy.json)
+  - [Grafana Dashboard.json import only](https://github.com/anselem-okeke/homelab/blob/main/grafana/panels/audit-soc-dashboard.import-newcopy.json)
+  - [Step for simulating grafana audit SOC]()
 
