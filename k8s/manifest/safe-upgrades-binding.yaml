@@ -1,0 +1,30 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  annotations:
+    gateway.networking.k8s.io/bundle-version: v1.5.0-dev
+    gateway.networking.k8s.io/channel: standard
+  creationTimestamp: "2026-04-05T10:18:37Z"
+  generation: 1
+  name: safe-upgrades.gateway.networking.k8s.io
+  resourceVersion: "21830995"
+  uid: aa08aa52-6190-49fd-ab90-353173629156
+spec:
+  matchResources:
+    matchPolicy: Equivalent
+    namespaceSelector: {}
+    objectSelector: {}
+    resourceRules:
+    - apiGroups:
+      - apiextensions.k8s.io
+      apiVersions:
+      - v1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - customresourcedefinitions
+      scope: '*'
+  policyName: safe-upgrades.gateway.networking.k8s.io
+  validationActions:
+  - Deny

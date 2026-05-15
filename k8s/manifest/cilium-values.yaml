@@ -15,6 +15,22 @@ ipam:
 routingMode: "tunnel"
 tunnelProtocol: "vxlan"
 
+l2announcements:
+  enabled: true
+
+externalIPs:
+  enabled: true
+
+k8sClientRateLimit:
+  qps: 20
+  burst: 40
+
+gatewayAPI:
+  enabled: true
+
+  gatewayClass:
+    create: "true"
+
 # Pod + Service CIDRs for your cluster (informational / can help clarity)
 # Pod CIDR:     10.244.0.0/16
 # Service CIDR: 10.96.0.0/12
@@ -56,7 +72,7 @@ hubble:
       - dns:query;ignoreAAAA
       - drop:labelsContext=source_namespace,destination_namespace,traffic_direction
       - tcp
-      - http
+    #  - http
       - flow:labelsContext=source_namespace,source_workload,destination_namespace,destination_workload,traffic_direction
       - httpV2:labelsContext=source_namespace,source_workload,destination_namespace,destination_workload,traffic_direction
     serviceMonitor:

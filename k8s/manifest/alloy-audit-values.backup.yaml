@@ -39,7 +39,7 @@ alloy:
           }
         }
 
-        # ✅ Keep only final outcome (drops RequestReceived/ResponseStarted duplicates)
+        # Keep only final outcome (drops RequestReceived/ResponseStarted duplicates)
         stage.match {
           selector = "{job=\"k8s-audit\"}"
           stages {
@@ -50,7 +50,7 @@ alloy:
           }
         }
 
-        # ✅ Drop leader-election / coordination noise
+        # Drop leader-election / coordination noise
         stage.match {
           selector = "{job=\"k8s-audit\"}"
           stages {
@@ -61,7 +61,7 @@ alloy:
           }
         }
 
-        # ✅ Drop successful WATCH (biggest remaining volume)
+        # Drop successful WATCH (biggest remaining volume)
         stage.match {
           selector = "{job=\"k8s-audit\"}"
           stages {
@@ -72,7 +72,7 @@ alloy:
           }
         }
 
-        # ✅ Drop successful reads
+        # Drop successful reads
         stage.match {
           selector = "{job=\"k8s-audit\"}"
           stages {
@@ -83,7 +83,7 @@ alloy:
           }
         }
 
-        # ✅ LOW-cardinality labels only (prevents stream/cardinality explosion)
+        # LOW-cardinality labels only (prevents stream/cardinality explosion)
         stage.labels {
           values = {
             verb = "verb",
