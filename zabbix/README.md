@@ -4,34 +4,57 @@ This document explains the full step-by-step setup used to deploy **Zabbix Serve
 Web port issue, configure the default Docker-based Zabbix agent, and finally install **Zabbix Agent 2 directly on the
 Linux host** so that the real Linux VM is monitored properly.
 
-The final result is:
+###The final result is:
 
-```text
-Zabbix Web UI
-  ↓
-Zabbix Server container
-  ↓
-Zabbix Agent 2 installed directly on Linux host
-  ↓
-Linux CPU, memory, disk, network, uptime, services, and system metrics
-```
+![img](zabbix-architecture.png)
+
+[comment]: <> (```text)
+
+[comment]: <> (Zabbix Web UI)
+
+[comment]: <> (  ↓)
+
+[comment]: <> (Zabbix Server container)
+
+[comment]: <> (  ↓)
+
+[comment]: <> (Zabbix Agent 2 installed directly on Linux host)
+
+[comment]: <> (  ↓)
+
+[comment]: <> (Linux CPU, memory, disk, network, uptime, services, and system metrics)
+
+[comment]: <> (```)
 
 ---
 
 ## 1. Target Architecture
 
-```text
-Linux VM / Docker Host
-├── Docker Engine
-├── Docker Compose
-├── zabbix-postgres container
-├── zabbix-server container
-├── zabbix-web container
-├── zabbix-agent2 container
-└── native zabbix-agent2 service installed on the Linux host
-```
+![img](z-architecture.png)
 
-The Docker stack provides:
+[comment]: <> (```text)
+
+[comment]: <> (Linux VM / Docker Host)
+
+[comment]: <> (├── Docker Engine)
+
+[comment]: <> (├── Docker Compose)
+
+[comment]: <> (├── zabbix-postgres container)
+
+[comment]: <> (├── zabbix-server container)
+
+[comment]: <> (├── zabbix-web container)
+
+[comment]: <> (├── zabbix-agent2 container)
+
+[comment]: <> (└── native zabbix-agent2 service installed on the Linux host)
+
+[comment]: <> (```)
+
+---
+
+###The Docker stack provides:
 
 | Component | Purpose |
 |---|---|
@@ -131,7 +154,7 @@ networks:
     driver: bridge
 ```
 
-> Note: Port `8081:8080` is used because port `8080` was already in use on the Linux host.
+> Note: in my environment, Port `8081:8080` is used because port `8080` was already in use on my Linux host.
 
 ---
 
@@ -333,6 +356,10 @@ Host-level metrics
 
 ## 9. Install Zabbix Agent 2 on the Linux Host
 
+> We want Zabbix to monitor the actual Linux server
+
+![img](agent-2.png)
+
 The following script was used successfully.
 
 Create the script:
@@ -399,15 +426,28 @@ active (running)
 
 ## 10. Configure Native Linux Zabbix Agent 2
 
-The following update script was used successfully.
+On the Linux server where Docker Compose stack is running, run:
+
+```text
+hostname -I
+```
+```text
+But in Docker setup, Zabbix server is inside a Docker container. So better use your Docker bridge subnet too.
+
+First check Docker network subnet:
+
+docker network inspect linux-vm_zabbix-net | grep Subnet
+
+You may see something like:
+
+"Subnet": "172.18.0.0/16"
+```
 
 Create the script:
 
 ```bash
 nano update-zabbix.sh
 ```
-
-Paste:
 
 ```bash
 #!/bin/bash
