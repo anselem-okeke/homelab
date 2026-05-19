@@ -4,7 +4,7 @@ This document explains the full step-by-step setup used to deploy **Zabbix Serve
 Web port issue, configure the default Docker-based Zabbix agent, and finally install **Zabbix Agent 2 directly on the
 Linux host** so that the real Linux VM is monitored properly.
 
-###The final result is:
+### The final result is:
 
 ![img](zabbix-architecture.png)
 
@@ -54,7 +54,7 @@ Linux host** so that the real Linux VM is monitored properly.
 
 ---
 
-###The Docker stack provides:
+### The Docker stack provides:
 
 | Component | Purpose |
 |---|---|
