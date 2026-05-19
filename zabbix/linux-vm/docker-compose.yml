@@ -1,0 +1,66 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: zabbix-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: zabbix_pass
+      POSTGRES_DB: zabbix
+    volumes:
+      - zabbix_pg_data:/var/lib/postgresql/data
+    networks:
+      - zabbix-net
+
+  zabbix-server:
+    image: zabbix/zabbix-server-pgsql:alpine-7.0-latest
+    container_name: zabbix-server
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      DB_SERVER_HOST: postgres
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: zabbix_pass
+      POSTGRES_DB: zabbix
+    ports:
+      - "10051:10051"
+    networks:
+      - zabbix-net
+
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+    container_name: zabbix-web
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - zabbix-server
+    environment:
+      ZBX_SERVER_HOST: zabbix-server
+      DB_SERVER_HOST: postgres
+      POSTGRES_USER: zabbix
+      POSTGRES_PASSWORD: zabbix_pass
+      POSTGRES_DB: zabbix
+      PHP_TZ: Europe/Berlin
+    ports:
+      - "8081:8080"
+    networks:
+      - zabbix-net
+
+  zabbix-agent2:
+    image: zabbix/zabbix-agent2:alpine-7.0-latest
+    container_name: zabbix-agent2
+    restart: unless-stopped
+    privileged: true
+    environment:
+      ZBX_HOSTNAME: "Zabbix server"
+      ZBX_SERVER_HOST: zabbix-server
+    networks:
+      - zabbix-net
+
+volumes:
+  zabbix_pg_data:
+
+networks:
+  zabbix-net:
+    driver: bridge
