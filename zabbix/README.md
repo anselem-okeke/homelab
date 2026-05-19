@@ -432,7 +432,7 @@ On the Linux server where Docker Compose stack is running, run:
 hostname -I
 ```
 ```text
-But in Docker setup, Zabbix server is inside a Docker container. So better use your Docker bridge subnet too.
+But in Docker setup, Zabbix server is inside a Docker container. So the idea is to use Docker bridge subnet too.
 
 First check Docker network subnet:
 
