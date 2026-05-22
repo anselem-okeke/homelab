@@ -1,6 +1,8 @@
 # OPNsense Firewall Monitoring Network Design — Anselem’s Homelab
 
-![Homelab OPNsense Monitoring Topology](homelab_network_topology_diagram.png)
+![img](opn%20(1).gif)
+
+![Homelab OPNsense Monitoring Topology](./anselem-vlan.png)
 
 ## Purpose
 
